@@ -1,10 +1,12 @@
 import React,{Component} from 'react';
 import '../style/userstyle.css';
+import Navbar from'./navbar';
 export default class userPage extends Component
 {
     render()
     {
         return(<section aria-label="user page">
+        <Navbar />
         <h1>Username Here</h1>
         <h2>You have 3 unread messages:</h2>
         <ul aria-label = "example mail">
