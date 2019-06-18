@@ -1,0 +1,11 @@
+.entry
+{
+    padding: 5px;
+}
+
+.navbar
+{
+    border:1px solid black;
+    height: 30px;
+    text-align: center;
+}

@@ -1,0 +1,14 @@
+ul
+{
+    list-style: none;
+}
+
+li
+{
+    border: 1px black solid;
+}
+
+p
+{
+    word-wrap: break-word;
+}
