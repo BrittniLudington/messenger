@@ -12,7 +12,7 @@ export default class loginsignup extends Component
             </header>
             <div aria-label="log in">
             <h2>Log in</h2>
-            <form id = "loginForm">
+            <form id = "loginForm" onSubmit={(e) =>handleLogin(e, this.props)}>
                 <label htmlFor="true" name="username">Username:</label>
                 <input type="text" name="username" className="block"/>
                 <label htmlFor="true" name="password">Password:</label>
@@ -28,4 +28,11 @@ export default class loginsignup extends Component
 
         );
     }
+}
+
+function handleLogin(e,props)
+{
+    e.preventDefault();
+    props.history.push(`/user/test`);
+
 }
