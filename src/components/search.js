@@ -1,11 +1,9 @@
 import React from 'react';
 import '../style/searchstyle.css';
-import Navbar from './navbar';
 function SearchResults(props)
 {
     return (
         <section aria-label="search results">
-            <Navbar/>
             <h1>Results for *Query*</h1>
         <table aria-label="users found in query">
             <tbody>
