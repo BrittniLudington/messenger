@@ -11,14 +11,21 @@ export default class userPage extends Component
         this.state = 
         {
             writingMessage: false,
-            currentMessage: "",
             receiver: null,
-            id: '1'
+            id: null,
+            name: null,
+            closeMessenger: false
         }
         this.handleReply = this.handleReply.bind(this);
         this.openMessage = this.openMessage.bind(this);
         this.closeMessage = this.closeMessage.bind(this);
         this.showInbox = this.showInbox.bind(this);
+    }
+
+    componentDidMount()
+    {
+        let user = dataCollector.getUsers(['1']);
+        this.setState({id:user[0].id,name:user[0].name});
     }
 
     showInbox()
@@ -29,50 +36,67 @@ export default class userPage extends Component
             return m.from;
         })
         let users = dataCollector.getUsers(userIds);
-        console.log(users);
+        let key = 0;
         let html = messages.map((message) =>
         {
-            return(<li>
-                <h3>From: </h3>
-                <h4>Sent: 6:15pm 6/14/19</h4>
-                <p>What do you think of this app? Weird huh?</p>
-                <button>reply</button>
+            let name ="name not found";
+            for(let i = 0; i < users.length; i++)
+            {
+                if(message.from === users[i].id)
+                    name = users[i].name;
+            }
+            key++;
+            return(<li key={key}>
+                <h3>From: {name} </h3>
+                <h4>Sent: {message.date}</h4>
+                <p>{message.subject}</p>
+                <button onClick={(e) => this.handleReply(e,name)}>reply</button>
             </li>);
         });
 
         return html;
     }
     
-    openMessage()
+    openMessage(name)
     {
-        this.setState({writingMessage:true});
+        this.setState({writingMessage:true,receiver:name,closeMessenger:false});
     }
 
     closeMessage()
     {
-        this.setState({writingMessage:false});
+        this.setState({writingMessage:false,closeMessenger:true});
     }
 
     render()
     {
-        return(<section aria-label="user page">
-        <Modal visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
-                    <div>
-                        <MessageBox/>
-                        <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
-                    </div>
-                </Modal>
-        <h1>Username Here</h1>
-        <h2>You have 3 unread messages:</h2>
-        <ul aria-label = "example mail">
-            {this.showInbox()}
-        </ul>
-        </section>);
+        if(!this.state.name || !this.state.id)
+        {
+            return(<section aria-label="user loading">
+                <h1>Loading...</h1>
+            </section>);
+        }
+        else
+        {
+            return(<section aria-label="user page">
+            <Modal visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
+                        <div>
+                            <MessageBox receiver={this.state.receiver} active={this.state.closeMessenger}/>
+                            <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
+                        </div>
+                    </Modal>
+            <h1>{this.state.name}</h1>
+            <h2>You have 3 unread messages:</h2>
+            <ul aria-label = "example mail">
+                {this.showInbox()}
+            </ul>
+            </section>);
+        }
+        
     }
 
     handleReply(e,name)
     {
         e.preventDefault();
-        this.setState({writingMessage:true,receiver:name},()=>console.log(this.state.writingMessage));
+        this.openMessage(name);
     }
 }

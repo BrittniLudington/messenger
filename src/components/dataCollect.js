@@ -16,7 +16,6 @@ export default class dataCollector
     // get array of users from array of ids
     static getUsers(idArray)
     {
-        console.log(idArray);
         let users = [];
         for(let i = 0; i < idArray.length; i++)
         {
@@ -28,6 +27,9 @@ export default class dataCollector
                 }
             }
         }
+
         return users;
     }
+
+
 }
