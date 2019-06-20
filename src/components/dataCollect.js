@@ -31,5 +31,25 @@ export default class dataCollector
         return users;
     }
 
+    // get array of users from query
+    static getUsersByQuery(query)
+    {
+        console.log(data.users);
+        // use word.includes(query);
+        let results = [];
+        for(let i = 0; i < data.users.length; i++)
+        {
+            if(data.users[i].name.includes(query))
+            {
+                results.push({
+                    name:data.users[i].name,
+                    id:data.users[i].id
+                });
+            }
+
+        }
+        return results;
+    }
+
 
 }

@@ -7,17 +7,21 @@ class Navbar extends Component
     constructor(props)
     {
         super(props);
-        console.log(props);
         this.state = 
         {
-            query:""
+            query:"",
+            redirect:false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
     }
+
     render()
     {
-        
+        if(this.state.redirect)
+        {
+            return(<Redirect to ={`/search/${this.state.query}`}></Redirect>);
+        }
         return (
             <section aria-label = "navbar" className = "navbar">
                 <Link to = {'/user/test'} className = "entry">My Page</Link>
@@ -40,7 +44,7 @@ class Navbar extends Component
             e.preventDefault();
             console.log("this should redirect");
             console.log(query);
-            return (<h1>HELLO</h1>);//<Redirect to={`/login`}/>;
+            this.setState({redirect:true});
         }
         
 
