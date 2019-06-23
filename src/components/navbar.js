@@ -20,7 +20,16 @@ class Navbar extends Component
     {
         if(this.state.redirect)
         {
-            return(<Redirect to ={`/search/${this.state.query}`}></Redirect>);
+            this.setState({redirect:false});
+            return(<section aria-label = "navbar" className="navbar">
+                        <Link to = {'/user/test'} className = "entry">My Page</Link>
+                <Link to = {'/login'} className = "entry">Sign out</Link>
+                <form aria-label = "search" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
+                    <input type = "text"  onChange={this.handleChange}/>
+                    <input type = "submit" value="Search"/>
+                </form>
+                <Redirect to ={`/search/${this.state.query}`}></Redirect>
+            </section>);
         }
         return (
             <section aria-label = "navbar" className = "navbar">

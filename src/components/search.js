@@ -42,17 +42,12 @@ class SearchResults extends Component
         this.setState({writingMessage:false,closeMessenger:true});
     }
 
-    componentWillReceiveProps(props)
+    updateResults(query)
     {
-        this.updateResults(props);
-    }
-
-    updateResults(props)
-    {
-        this.setState({query:props.match.params.username},()=>
+        console.log(query);
+        this.setState({query:query},()=>
         {
             let r = dataCollector.getUsersByQuery(this.state.query);
-            console.log(r);
             this.setState({results:r});
         });
     }
@@ -62,7 +57,6 @@ class SearchResults extends Component
         let numPerRow = 4;
         let rows = this.state.results.length % numPerRow;
         let users = this.state.results;
-        console.log(users);
         let count = 0;
         let table = [];
 
@@ -80,13 +74,18 @@ class SearchResults extends Component
                 </td>);
                 count++;
             }
-            table.push(<tr>{singleRow}</tr>);
+            table.push(<tr key={i}>{singleRow}</tr>);
         }
 
         return table;
     }
     render()
     {
+        let newQuery = this.props.match.params.username;
+        if(newQuery !== this.state.query)
+        {
+            this.updateResults(newQuery);
+        }
         if(this.state.results === null)
         {
             return(<h1 aria-label="loading screen">Loading</h1>);
@@ -99,7 +98,7 @@ class SearchResults extends Component
                             <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
                         </div>
                     </Modal>
-                <h1>Results for *Query*</h1>
+                <h1>Results for {this.state.query}</h1>
             <table aria-label="users found in query">
                 <tbody>
                 {this.showResults()}
