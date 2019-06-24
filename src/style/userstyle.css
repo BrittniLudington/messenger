@@ -13,3 +13,29 @@ p
 {
     word-wrap: break-word;
 }
+
+.inline
+{
+    display: inline-block;
+}
+
+.inbox
+{
+    text-align: center;
+}
+
+.filters
+{
+    width:20%;
+}
+
+.filterBox
+{
+    vertical-align: top;
+}
+
+.mail
+{
+    width: 60%;
+    margin:none;
+}

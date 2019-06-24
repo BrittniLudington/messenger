@@ -85,10 +85,19 @@ export default class userPage extends Component
                         </div>
                     </Modal>
             <h1>{this.state.name}</h1>
-            <h2>You have 3 unread messages:</h2>
-            <ul aria-label = "example mail">
+            <div aria-label="inbox">
+            <ul aria-label="inbox filters" className="inline filterBox">
+            <h2>Filters</h2>
+                <li className="filters"><button>All</button></li>
+                <li className="filters"><button>Read</button></li>
+                <li className="filters"><button>Unread</button></li>
+                <li className="filters"><button>Sent</button></li>
+            </ul>
+            <ul aria-label = "example mail" className="inline mail">
                 {this.showInbox()}
             </ul>
+            </div>
+
             </section>);
         }
         
