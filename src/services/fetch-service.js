@@ -41,7 +41,7 @@ export default class Server
         
             });
     }
-    static registerUser()
+    static registerUser(name,password)
     {
         fetch(`http://localhost:8000/users`,
         {   
@@ -52,7 +52,10 @@ export default class Server
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-
+            body:{
+                name:name,
+                password:password
+            }
 
         })
         .then(res => console.log(res));
