@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import TokenService from '../services/token-service';
+import Server from '../services/fetch-service';
 
 export default class SignUp extends Component
 {
@@ -21,7 +23,10 @@ export default class SignUp extends Component
     handleSignin(e)
     {
         e.preventDefault();
+        TokenService.saveToken({name:this.state.name,password:this.state.password});
         this.setState({sent:true});
+        //console.log(token,window.btoa(token),window.atob(window.btoa(token)));
+        Server.registerUser();
     }
 
     handleClosing()
