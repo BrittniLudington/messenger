@@ -41,8 +41,12 @@ export default class Server
         
             });
     }
-    static registerUser(name,password)
+    static registerUser()
     {
+        let full = window.localStorage.getItem("PRIVATE_MESSENGER").split(':');
+        let name = full[0],password = full[1];
+        name = window.btoa(name);
+        password = window.btoa(password);
         fetch(`http://localhost:8000/users`,
         {   
             crossDomain: true,
@@ -52,12 +56,12 @@ export default class Server
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body:{
+            body: JSON.stringify({
                 name:name,
                 password:password
-            }
-
+            })
+            
         })
-        .then(res => console.log(res));
+        .then();
     }
 }
