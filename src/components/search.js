@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import '../style/searchstyle.css';
 import MessageBox from './messageBox';
 import Modal from 'react-awesome-modal';
+import Server from '../services/fetch-service';
 import dataCollector from './dataCollect';
 
 class SearchResults extends Component
@@ -47,8 +48,15 @@ class SearchResults extends Component
         console.log(query);
         this.setState({query:query},()=>
         {
-            let r = dataCollector.getUsersByQuery(this.state.query);
-            this.setState({results:r});
+            Server.getUsersByQuery(this.state.query).then(r =>
+                {
+                    let res = r;
+                    for(let i = 0; i < res.length; i++)
+                    {
+                        res[i].name = window.atob(res[i].name);
+                    }
+                    this.setState({results:r});
+                });
         });
     }
 

@@ -15,7 +15,8 @@ export default class userPage extends Component
             receiver: null,
             id: null,
             name: null,
-            closeMessenger: false
+            closeMessenger: false,
+            messages: []
         }
         this.handleReply = this.handleReply.bind(this);
         this.openMessage = this.openMessage.bind(this);
@@ -25,37 +26,60 @@ export default class userPage extends Component
 
     componentDidMount()
     {
-        let user = dataCollector.getUsers(['1']);
-        this.setState({id:user[0].id,name:user[0].name});
+            Server.getUser().then(res=>
+            {
+                let name = window.atob(res.name);
+                let id = res.id;
+                this.setState({id:id,name:name});
+            });
+        //let user = dataCollector.getUsers(['1']);
+        //this.setState({id:user[0].id,name:user[0].name});
     }
 
     showInbox()
     {
-        let messages = dataCollector.getRelatedMessages(this.state.id);
-        let userIds = messages.map((m) =>
-        {
-            return m.from;
-        })
-        let users = dataCollector.getUsers(userIds);
-        let key = 0;
-        let html = messages.map((message) =>
-        {
-            let name ="name not found";
-            for(let i = 0; i < users.length; i++)
+        Server.getRelatedMessages(this.state.id).then(res=>
             {
-                if(message.from === users[i].id)
-                    name = users[i].name;
-            }
-            key++;
-            return(<li key={key}>
-                <h3>From: {name} </h3>
-                <h4>Sent: {message.date}</h4>
-                <p>{message.subject}</p>
-                <button onClick={(e) => this.handleReply(e,name)}>reply</button>
-            </li>);
-        });
+                let messages = res;
+                console.log(messages);
+                let html;
+                if(messages === undefined || messages.length < 1)
+                {
+                    html = <h2>Inbox Empty</h2>
+                    return html;
+                }
+                let key = 0;
+                html =  messages.map((message) =>
+                {
+                    console.log(message);
+                    let name ="name not found";
+                    return (<li key={key}>
+                        <h3>From: {name} </h3>
+                        <h4>Sent: {message.date}</h4>
+                        <p>{message.subject}</p>
+                        <button onClick={(e) => this.handleReply(e,name)}>reply</button>
+                        </li>);
+                    
+                    /*Server.getAUser(message.from)
+                    .then(user =>
+                    {
+                        console.log(user);
+                        name = window.atob(user.name);
+                        key++;
+                        return(<li key={key}>
+                            <h3>From: {name} </h3>
+                            <h4>Sent: {message.date}</h4>
+                            <p>{message.subject}</p>
+                            <button onClick={(e) => this.handleReply(e,name)}>reply</button>
+                            </li>);
+                    }).then(()=> console.log(html));
+                    */
+                });
+                console.log(html);
+                return html;
 
-        return html;
+            });
+                            
     }
     
     openMessage(name)

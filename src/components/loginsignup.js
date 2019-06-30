@@ -92,16 +92,7 @@ export default class loginsignup extends Component
 {
     e.preventDefault();
     TokenService.saveToken({name:this.state.username,password:this.state.password});
-    /*let promise = new Promise(function(resolve)
-    {
-        resolve(Server.getUser());
 
-    })
-    .then(result=>
-        {
-            console.log(result);
-        })
-    */
    Server.getUser().then(result=>
     {
         if(!result)

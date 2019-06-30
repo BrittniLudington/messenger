@@ -51,8 +51,7 @@ class Navbar extends Component
         handleSearch(e, query,props)
         {
             e.preventDefault();
-            console.log("this should redirect");
-            console.log(query);
+
             this.setState({redirect:true});
         }
         

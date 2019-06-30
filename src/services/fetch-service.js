@@ -2,21 +2,50 @@ import TokenService from './token-service';
 
 export default class Server
 {
-    static getRelatedMessages()
+    static getRelatedMessages(id)
     {
-        /*fetch(`localhost:8000/messages`,
+        return fetch(`http://localhost:8000/messages/${id}`,
         {
             crossDomain: true,
             method: 'GET',
             headers: {
-                'Authorization':`basic ${TokenService.getToken()}`,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            },
+            }
         })
-        .then((result)=>result.json())
-        .then((res)=>console.log(res));
-        */
+        .then(result => result.json())
+        .then(res => {return res});//=>{return result.json()});
+        
+    }
+
+    static getAUser(id)
+    {
+        return fetch(`http://localhost:8000/users/${id}`,
+        {
+            crossDomain: true,
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(result => result.json())
+        .then(res => {return res});
+    }
+
+    static getUsersByQuery(query)
+    {
+        return fetch(`http://localhost:8000/search/${query}`,
+        {
+            crossDomain: true,
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(result => result.json())
+        .then(res => {return res});
     }
     
 
