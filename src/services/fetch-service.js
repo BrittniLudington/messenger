@@ -47,6 +47,25 @@ export default class Server
         .then(result => result.json())
         .then(res => {return res});
     }
+
+    static sendMessage(to,header,subject)
+    {
+        return fetch(`http://localhost:8000/sending`,
+        {
+            crossDomain: true,
+            method: 'POST',
+            headers: {
+                'Authorization':`basic ${TokenService.getToken()}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                to:to,
+                header:header,
+                subject:subject
+            })
+        })
+    }
     
 
     static getUser()

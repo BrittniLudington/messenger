@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import '../style/messagestyle.css';
+import Server from '../services/fetch-service';
 export default class MessageBox extends Component
 {
     constructor(props)
@@ -8,11 +9,14 @@ export default class MessageBox extends Component
         this.state = 
         {
             message:"",
-            sent: false
+            sent: false,
+            to: null,
+            header: ""
         }
         this.handleSend = this.handleSend.bind(this);
         this.messageChanged = this.messageChanged.bind(this);
         this.handleClosing = this.handleClosing.bind(this);
+        this.headerChanged = this.headerChanged.bind(this);
     }
 
     handleClosing()
@@ -38,8 +42,11 @@ export default class MessageBox extends Component
         return(
             <section aria-label = "message area" className="messageBox">
             <h1>Send message to {this.props.receiver}?</h1>
+            <label>Subject
+                <textarea rows="1" cols="50" onChange={(e) => this.headerChanged(e)}></textarea>
+            </label>
             <textarea rows="7" cols="50" onChange={(e) => this.messageChanged(e)}></textarea>
-            <button onClick={(e) =>(this.handleSend(e))}>Send</button>
+            <button onClick={(e) =>(this.handleSend(e,this.props.id))}>Send</button>
             </section>
 
         );
@@ -50,9 +57,17 @@ export default class MessageBox extends Component
         this.setState({message:e.target.value});
     }
 
-    handleSend(e)
+    headerChanged(e)
+    {
+        this.setState({header:e.target.value})
+    }
+
+    handleSend(e,id)
     {
         e.preventDefault();
+
+        Server.sendMessage(id,this.state.header,this.state.message);
+            
         this.setState({sent:true});
     }
 }

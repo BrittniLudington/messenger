@@ -18,7 +18,8 @@ class SearchResults extends Component
             name: null,
             closeMessenger: false,
             query:null,
-            results:null
+            results:null,
+            idToSend: null
         }
         this.handleReply = this.handleReply.bind(this);
         this.openMessage = this.openMessage.bind(this);
@@ -27,20 +28,20 @@ class SearchResults extends Component
         this.updateResults = this.updateResults.bind(this);
     }
 
-    handleReply(e,name)
+    handleReply(e,name, id)
     {
         e.preventDefault();
-        this.openMessage(name);
+        this.openMessage(name, id);
     }
 
-    openMessage(name)
+    openMessage(name,id)
     {
-        this.setState({writingMessage:true,receiver:name,closeMessenger:false});
+        this.setState({writingMessage:true,receiver:name,closeMessenger:false,idToSend:id});
     }
 
     closeMessage()
     {
-        this.setState({writingMessage:false,closeMessenger:true});
+        this.setState({writingMessage:false,closeMessenger:true,idToSend:null});
     }
 
     updateResults(query)
@@ -78,7 +79,7 @@ class SearchResults extends Component
                 let u = users[count];
                 singleRow.push(<td key={users[count].id}>
                     <h2>{users[count].name}</h2>
-                    <button onClick={(e)=>{this.handleReply(e,u.name)}}>send message</button>
+                    <button onClick={(e)=>{this.handleReply(e,u.name, u.id)}}>send message</button>
                 </td>);
                 count++;
             }
@@ -102,7 +103,7 @@ class SearchResults extends Component
             <section aria-label="search results">
             <Modal visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>
-                            <MessageBox receiver={this.state.receiver} active={this.state.closeMessenger}/>
+                            <MessageBox id={this.state.idToSend} receiver={this.state.receiver} active={this.state.closeMessenger}/>
                             <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
                         </div>
                     </Modal>
