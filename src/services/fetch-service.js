@@ -32,15 +32,17 @@ export default class Server
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        }).then(res => 
+        })
+        .then(res =>
             {
-                console.log(res);
+
                 if(res.status === 401)
                     return false;
-                return true;
+                return res.json();
         
             });
     }
+
     static registerUser()
     {
         let full = window.localStorage.getItem("PRIVATE_MESSENGER").split(':');

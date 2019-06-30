@@ -9,7 +9,14 @@ export default class TokenService
 
     static getToken()
     {
-        console.log(window.btoa(window.localStorage.getItem("PRIVATE_MESSENGER")));
         return window.btoa(window.localStorage.getItem("PRIVATE_MESSENGER"));
+    }
+
+    static getCleanToken()
+    {
+        let full = window.localStorage.getItem("PRIVATE_MESSENGER");
+        if(full === null)
+        return null;      
+        return full.split(':');
     }
 }

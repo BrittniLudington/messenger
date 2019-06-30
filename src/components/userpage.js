@@ -3,6 +3,7 @@ import '../style/userstyle.css';
 import MessageBox from './messageBox';
 import Modal from 'react-awesome-modal';
 import dataCollector from './dataCollect';
+import Server from '../services/fetch-service';
 export default class userPage extends Component
 {
     constructor(props)

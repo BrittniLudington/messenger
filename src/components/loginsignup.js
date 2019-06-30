@@ -26,6 +26,15 @@ export default class loginsignup extends Component
         this.handleLogin = this.handleLogin.bind(this);
     }
 
+    componentWillMount()
+    {
+        let info = TokenService.getCleanToken();
+        if(info !== null)
+        {
+            this.setState({username:info[0],password:info[1]});
+        }
+    }
+
     openMessage(e)
     {
         e.preventDefault();
@@ -63,9 +72,9 @@ export default class loginsignup extends Component
             <h2>Log in</h2>
             <form id = "loginForm" onSubmit={(e) =>this.handleLogin(e, this.props)}>
                 <label htmlFor="true" name="username">Username:</label>
-                <input type="text" name="username" className="block" onChange={(e)=>this.updateName(e)}/>
+                <input type="text" name="username" className="block" value={this.state.username} onChange={(e)=>this.updateName(e)}/>
                 <label htmlFor="true" name="password">Password:</label>
-                <input type="text" name="password" className="block" onChange={(e)=>this.updatePassword(e)}/>
+                <input type="text" name="password" className="block" value={this.state.password} onChange={(e)=>this.updatePassword(e)}/>
                 <input type="submit" value="Log in"/>
                 <p>If the input is invalid, a popup will show stating that either the username or password is invalid.</p>
             </form>
