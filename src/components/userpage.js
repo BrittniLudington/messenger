@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import '../style/userstyle.css';
 import MessageBox from './messageBox';
 import Modal from 'react-awesome-modal';
-import dataCollector from './dataCollect';
 import Server from '../services/fetch-service';
 export default class userPage extends Component
 {
@@ -22,24 +21,36 @@ export default class userPage extends Component
         this.openMessage = this.openMessage.bind(this);
         this.closeMessage = this.closeMessage.bind(this);
         this.showInbox = this.showInbox.bind(this);
+        this.getMessages = this.getMessages.bind(this);
     }
 
     componentDidMount()
     {
             Server.getUser().then(res=>
             {
-                let name = window.atob(res.name);
-                let id = res.id;
-                this.setState({id:id,name:name});
+                //        props.history.push(`/user/MyPage`);
+                if(res === false)
+                {
+                    this.props.history.push('/login');
+                }
+                else
+                {
+                    let name = window.atob(res.name);
+                    let id = res.id;
+                    this.setState({id:id,name:name},()=>this.getMessages()
+                    );
+                }
+
             });
         //let user = dataCollector.getUsers(['1']);
         //this.setState({id:user[0].id,name:user[0].name});
     }
 
-    showInbox()
+    getMessages()
     {
         Server.getRelatedMessages(this.state.id).then(res=>
             {
+                let inbox = [];
                 let messages = res;
                 console.log(messages);
                 let html;
@@ -48,15 +59,31 @@ export default class userPage extends Component
                     html = <h2>Inbox Empty</h2>
                     return html;
                 }
-                let key = 0;
-                html =  messages.map((message) =>
+                messages.map((message) =>
                 {
-                    console.log(message);
+                    inbox.push(
+                        {From: message.header,
+                            header:message.header,
+                        Sent: message.date,
+                        message: message.subject});
+
+                });
+                this.setState({messages:inbox});
+            });
+    }
+
+    showInbox()
+    {
+            let key = 0;
+
+                let html =  this.state.messages.map((message) =>
+                {
                     let name ="name not found";
+                    key++;
                     return (<li key={key}>
-                        <h3>From: {name} </h3>
-                        <h4>Sent: {message.date}</h4>
-                        <p>{message.subject}</p>
+                        <h3>From: {message.From} </h3>
+                        <h4>Sent: {message.Sent}</h4>
+                        <p>{message.Subject}</p>
                         <button onClick={(e) => this.handleReply(e,name)}>reply</button>
                         </li>);
                     
@@ -74,12 +101,9 @@ export default class userPage extends Component
                             </li>);
                     }).then(()=> console.log(html));
                     */
-                });
-                console.log(html);
-                return html;
 
             });
-                            
+            return html;           
     }
     
     openMessage(name)

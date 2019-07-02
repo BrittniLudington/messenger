@@ -15,8 +15,8 @@ export default class loginsignup extends Component
         {
             signup:false,
             closeSignup:false,
-            username:null,
-            password:null,
+            username:"",
+            password:"",
             invalid: false
         }
         this.openMessage = this.openMessage.bind(this);
@@ -100,7 +100,7 @@ export default class loginsignup extends Component
             this.setState({invalid:true});
             return;
         }
-        props.history.push(`/user/test`);
+        props.history.push(`/user/MyPage`);
 
     })
 

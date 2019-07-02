@@ -19,4 +19,11 @@ export default class TokenService
         return null;      
         return full.split(':');
     }
+
+    static removeToken()
+    {
+        window.localStorage.removeItem("PRIVATE_MESSENGER");
+        console.log("done");
+        return;
+    }
 }

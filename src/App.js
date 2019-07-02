@@ -14,7 +14,7 @@ function App() {
       <Switch>
       <Redirect exact from='/' to='/login'></Redirect>
       <Route path='/login' component={loginsignup}></Route>
-      <Route path="/user/:username" component={userPage}></Route>
+      <Route path="/user/MyPage" component={userPage}></Route>
       <Route path="/search/:username" component={SearchResults}></Route>
       </Switch>
     </div>
