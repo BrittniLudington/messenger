@@ -13,21 +13,23 @@ class Navbar extends Component
         {
             query:"",
             redirect:false,
-            isLoggedIn:false
+            isLoggedIn:false,
+            redirectTo:""
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.accountPrivs = this.accountPrivs.bind(this);
+        this.signOut = this.signOut.bind(this);
     }
 
     accountPrivs()
     {
-        if(this.state.isLoggedIn)
-        {
+        //if(this.state.isLoggedIn)
+        //{
             return (<div aria-label="super secret account stuff">
             <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
-            <Link to = {'/login'} onClick={(e)=>signOut(e)} className = "entry">Sign out</Link></div>);
-        }
+            <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link></div>);
+        //}
     }
 
     componentDidMount()
@@ -48,17 +50,19 @@ class Navbar extends Component
         {
             this.setState({redirect:false});
             return(<section aria-label = "navbar" className="navbar">
-                        {this.accountPrivs()}
+                        <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
+            <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link>
                 <form aria-label = "search" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
                     <input type = "text"  onChange={this.handleChange}/>
                     <input type = "submit" value="Search"/>
                 </form>
-                <Redirect to ={`/search/${this.state.query}`}></Redirect>
+                <Redirect to ={this.state.redirectTo}></Redirect>
             </section>);
         }
         return (
             <section aria-label = "navbar" className = "navbar">
-                    {this.accountPrivs()}
+                    <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
+            <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link>
                 <form aria-label = "search" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
                     <input type = "text"  onChange={this.handleChange}/>
                     <input type = "submit" value="Search"/>
@@ -76,16 +80,18 @@ class Navbar extends Component
         {
             e.preventDefault();
 
-            this.setState({redirect:true});
+            this.setState({redirect:true,redirectTo:`/search/${this.state.query}`});
         }
         
+    signOut(e)
+    {
+        e.preventDefault();
+        TokenService.removeToken();
+        this.setState({redirect:true,redirectTo:'/login'});
+    }
 
 }
 
-function signOut(e)
-{
-    e.preventDefault();
-    TokenService.removeToken();
-}
+
 
 export default Navbar;

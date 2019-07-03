@@ -3,7 +3,8 @@ import '../style/searchstyle.css';
 import MessageBox from './messageBox';
 import Modal from 'react-awesome-modal';
 import Server from '../services/fetch-service';
-import dataCollector from './dataCollect';
+import Navbar from './navbar';
+
 
 class SearchResults extends Component
 {
@@ -46,18 +47,34 @@ class SearchResults extends Component
 
     updateResults(query)
     {
-        console.log(query);
+
         this.setState({query:query},()=>
         {
-            Server.getUsersByQuery(this.state.query).then(r =>
-                {
-                    let res = r;
-                    for(let i = 0; i < res.length; i++)
+            if(query === undefined)
+            {
+                Server.getAllUsers().then(r =>
                     {
-                        res[i].name = window.atob(res[i].name);
-                    }
-                    this.setState({results:r});
-                });
+                        let res = r;
+                        for(let i = 0; i < res.length; i++)
+                        {
+                            res[i].name = window.atob(res[i].name);
+                        }
+                        this.setState({results:res})
+                    })
+            }
+            else
+            {
+                Server.getUsersByQuery(this.state.query).then(r =>
+                    {
+                        let res = r;
+                        for(let i = 0; i < res.length; i++)
+                        {
+                            res[i].name = window.atob(res[i].name);
+                        }
+                        this.setState({results:res});
+                    });
+            }
+            
         });
     }
 
@@ -97,10 +114,14 @@ class SearchResults extends Component
         }
         if(this.state.results === null)
         {
-            return(<h1 aria-label="loading screen">Loading</h1>);
+            return(<section aria-label="search results">
+            <Navbar/>
+            <h1 aria-label="loading screen">Loading</h1>
+            </section>);
         }
         return (
             <section aria-label="search results">
+            <Navbar/>
             <Modal visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>
                             <MessageBox id={this.state.idToSend} receiver={this.state.receiver} active={this.state.closeMessenger}/>

@@ -3,6 +3,8 @@ import '../style/userstyle.css';
 import MessageBox from './messageBox';
 import Modal from 'react-awesome-modal';
 import Server from '../services/fetch-service';
+import Navbar from './navbar';
+
 export default class userPage extends Component
 {
     constructor(props)
@@ -12,16 +14,25 @@ export default class userPage extends Component
         {
             writingMessage: false,
             receiver: null,
+            receiverId: null,
             id: null,
             name: null,
             closeMessenger: false,
-            messages: []
+            messages: [],
+            filter: 0 // 0 == show all, 1 == read, 2 == unread, 3 == sent by you
         }
         this.handleReply = this.handleReply.bind(this);
         this.openMessage = this.openMessage.bind(this);
         this.closeMessage = this.closeMessage.bind(this);
         this.showInbox = this.showInbox.bind(this);
         this.getMessages = this.getMessages.bind(this);
+        this.swapFilter = this.swapFilter.bind(this);
+    }
+
+    swapFilter(e,filter)
+    {
+        e.preventDefault();
+        this.setState({filter:filter});
     }
 
     componentDidMount()
@@ -42,8 +53,7 @@ export default class userPage extends Component
                 }
 
             });
-        //let user = dataCollector.getUsers(['1']);
-        //this.setState({id:user[0].id,name:user[0].name});
+
     }
 
     getMessages()
@@ -52,7 +62,6 @@ export default class userPage extends Component
             {
                 let inbox = [];
                 let messages = res;
-                console.log(messages);
                 let html;
                 if(messages === undefined || messages.length < 1)
                 {
@@ -61,14 +70,24 @@ export default class userPage extends Component
                 }
                 messages.map((message) =>
                 {
-                    inbox.push(
-                        {From: message.header,
-                            header:message.header,
-                        Sent: message.date,
-                        message: message.subject});
+                    Server.getAUser(message.from).then(res =>
+                        {
+                            let from = window.atob(res.name);
+                            if(res.id === this.state.id)
+                                from = "You";
+                            inbox.push(
+                                {From: res.id,
+                                    FromName: from,
+                                    header:window.atob(message.header),
+                                Sent: message.date,
+                                message: window.atob(message.subject),
+                                isRead:message.toread});
 
+                            this.setState({messages:inbox});
+        
+                        })
+                   
                 });
-                this.setState({messages:inbox});
             });
     }
 
@@ -78,37 +97,52 @@ export default class userPage extends Component
 
                 let html =  this.state.messages.map((message) =>
                 {
-                    let name ="name not found";
-                    key++;
-                    return (<li key={key}>
-                        <h3>From: {message.From} </h3>
+
+                    let htmlpiece = (<li key={key}>
+                        <h3>From: {message.FromName} </h3>
                         <h4>Sent: {message.Sent}</h4>
-                        <p>{message.Subject}</p>
-                        <button onClick={(e) => this.handleReply(e,name)}>reply</button>
+                        <h4>{message.header}</h4>
+                        <p>{message.message}</p>
+                        <button onClick={(e) => this.handleReply(e,message.FromName,message.From)}>reply</button>
                         </li>);
-                    
-                    /*Server.getAUser(message.from)
-                    .then(user =>
+                    if(this.state.filter === 1)
                     {
-                        console.log(user);
-                        name = window.atob(user.name);
-                        key++;
-                        return(<li key={key}>
-                            <h3>From: {name} </h3>
-                            <h4>Sent: {message.date}</h4>
-                            <p>{message.subject}</p>
-                            <button onClick={(e) => this.handleReply(e,name)}>reply</button>
-                            </li>);
-                    }).then(()=> console.log(html));
-                    */
+                        if(message.isRead)
+                        {
+                            key++;
+                            return htmlpiece;
+                        }
+                        return;
+                    }
+                    else if(this.state.filter === 2)
+                    {
+                        if(!message.isRead)
+                        {
+                            key++;
+                            return htmlpiece;
+                        }
+                        return;
+                    }
+                    else if(this.state.filter === 3)
+                    {
+
+                        if(message.From === this.state.id)
+                        {
+                            key++;
+                            return htmlpiece;
+                        }
+                        return;
+                    }
+                    key++;
+                    return htmlpiece;
 
             });
             return html;           
     }
     
-    openMessage(name)
+    openMessage(name,id)
     {
-        this.setState({writingMessage:true,receiver:name,closeMessenger:false});
+        this.setState({writingMessage:true,receiver:name,closeMessenger:false,receiverId:id});
     }
 
     closeMessage()
@@ -127,9 +161,10 @@ export default class userPage extends Component
         else
         {
             return(<section aria-label="user page">
+            <Navbar />
             <Modal visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>
-                            <MessageBox receiver={this.state.receiver} active={this.state.closeMessenger}/>
+                            <MessageBox receiver={this.state.receiver} id={this.state.receiverId} active={this.state.closeMessenger}/>
                             <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
                         </div>
                     </Modal>
@@ -137,10 +172,10 @@ export default class userPage extends Component
             <div aria-label="inbox">
             <ul aria-label="inbox filters" className="inline filterBox">
             <h2>Filters</h2>
-                <li className="filters"><button>All</button></li>
-                <li className="filters"><button>Read</button></li>
-                <li className="filters"><button>Unread</button></li>
-                <li className="filters"><button>Sent</button></li>
+                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,0)}}>All</button></li>
+                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,1)}}>Read</button></li>
+                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,2)}}>Unread</button></li>
+                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,3)}}>Sent</button></li>
             </ul>
             <ul aria-label = "example mail" className="inline mail">
                 {this.showInbox()}
@@ -152,9 +187,9 @@ export default class userPage extends Component
         
     }
 
-    handleReply(e,name)
+    handleReply(e,name,id)
     {
         e.preventDefault();
-        this.openMessage(name);
+        this.openMessage(name,id);
     }
 }

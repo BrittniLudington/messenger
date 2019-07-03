@@ -48,6 +48,21 @@ export default class Server
         .then(res => {return res});
     }
 
+    static getAllUsers()
+    {
+        return fetch(`http://localhost:8000/users/`,
+        {
+            crossDomain: true,
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(result => result.json())
+        .then(res => {return res});
+    }
+
     static sendMessage(to,header,subject)
     {
         return fetch(`http://localhost:8000/sending`,
@@ -61,8 +76,8 @@ export default class Server
             },
             body:JSON.stringify({
                 to:to,
-                header:header,
-                subject:subject
+                header:window.btoa(header),
+                subject:window.btoa(subject)
             })
         })
     }

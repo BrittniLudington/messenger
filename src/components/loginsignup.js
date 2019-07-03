@@ -76,12 +76,10 @@ export default class loginsignup extends Component
                 <label htmlFor="true" name="password">Password:</label>
                 <input type="text" name="password" className="block" value={this.state.password} onChange={(e)=>this.updatePassword(e)}/>
                 <input type="submit" value="Log in"/>
-                <p>If the input is invalid, a popup will show stating that either the username or password is invalid.</p>
             </form>
             {this.state.invalid ? <h2>Username/Password incorrect!</h2>:null}
             </div>
             <p>Don't have an account? Sign up for one here</p>
-            <p>NOTE: This button will not do anything in the wireframe. The sign up form will be similar to the login form</p>
             <button onClick={(e)=>this.openMessage(e)}>Sign Up</button>
         </section>
 
