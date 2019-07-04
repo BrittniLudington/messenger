@@ -29,6 +29,26 @@ class SearchResults extends Component
         this.updateResults = this.updateResults.bind(this);
     }
 
+    componentDidMount()
+    {
+            Server.getUser().then(res=>
+            {
+                //        props.history.push(`/user/MyPage`);
+                if(res === false)
+                {
+                    this.props.history.push('/login');
+                }
+                else
+                {
+                    let name = window.atob(res.name);
+                    let id = res.id;
+                    this.setState({id:id,name:name});
+                }
+
+            });
+
+    }
+
     handleReply(e,name, id)
     {
         e.preventDefault();
