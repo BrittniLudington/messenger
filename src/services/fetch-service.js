@@ -1,10 +1,11 @@
 import TokenService from './token-service';
 
+let url = "https://messenger-app-server.herokuapp.com/";
 export default class Server
 {
     static getRelatedMessages(id)
     {
-        return fetch(`http://localhost:8000/messages/${id}`,
+        return fetch(`${url}messages/${id}`,
         {
             crossDomain: true,
             method: 'GET',
@@ -20,7 +21,7 @@ export default class Server
 
     static getAUser(id)
     {
-        return fetch(`http://localhost:8000/users/${id}`,
+        return fetch(`${url}users/${id}`,
         {
             crossDomain: true,
             method: 'GET',
@@ -35,7 +36,7 @@ export default class Server
 
     static getUsersByQuery(query)
     {
-        return fetch(`http://localhost:8000/search/${query}`,
+        return fetch(`${url}search/${query}`,
         {
             crossDomain: true,
             method: 'GET',
@@ -50,7 +51,7 @@ export default class Server
 
     static getAllUsers()
     {
-        return fetch(`http://localhost:8000/users/`,
+        return fetch(`${url}users/`,
         {
             crossDomain: true,
             method: 'GET',
@@ -65,7 +66,7 @@ export default class Server
 
     static sendMessage(to,header,subject)
     {
-        return fetch(`http://localhost:8000/sending`,
+        return fetch(`${url}sending`,
         {
             crossDomain: true,
             method: 'POST',
@@ -85,7 +86,7 @@ export default class Server
 
     static getUser()
     {
-        return fetch(`http://localhost:8000/users/MyAccount`,
+        return fetch(`${url}users/MyAccount`,
         {
             crossDomain:true,
             method: 'GET',
@@ -112,7 +113,7 @@ export default class Server
         let name = full[0],password = full[1];
         name = window.btoa(name);
         password = window.btoa(password);
-        fetch(`http://localhost:8000/users`,
+        fetch(`${url}users`,
         {   
             crossDomain: true,
             method: 'POST',
