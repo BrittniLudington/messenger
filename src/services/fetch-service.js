@@ -113,7 +113,7 @@ export default class Server
         let name = full[0],password = full[1];
         name = window.btoa(name);
         password = window.btoa(password);
-        fetch(`${url}users`,
+        return fetch(`${url}users`,
         {   
             crossDomain: true,
             method: 'POST',
@@ -127,7 +127,6 @@ export default class Server
                 password:password
             })
             
-        })
-        .then();
+        });
     }
 }

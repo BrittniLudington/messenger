@@ -64,7 +64,7 @@ export default class loginsignup extends Component
             </header>
             <Modal visible={this.state.signup} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>
-                            <SignUp active={this.state.closeSignup}/>
+                            <SignUp active={this.state.closeSignup} urlStuff={this.props}/>
                             <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
                         </div>
             </Modal>

@@ -65,9 +65,6 @@ To use the search feature:
 
 The following are currently known bugs. Under each one is a temporary solution until the bug is resolved.
 
-- Upon registering an account, the login/signup page will not automatically take the user to their page.
--  Solution: use newly made name and password to login
-
 - Search query is buggy, it won't always bring up existing accounts despite having the query
 -  Solution: leave the search bar blank to see all the users
 
