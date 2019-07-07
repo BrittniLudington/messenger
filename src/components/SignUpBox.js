@@ -28,7 +28,6 @@ export default class SignUp extends Component
         TokenService.saveToken({name:this.state.name,password:this.state.password});
         this.setState({sent:true});
         //console.log(token,window.btoa(token),window.atob(window.btoa(token)));
-        console.log(this.props);
         Server.registerUser().then(()=>{
             this.props.urlStuff.history.push(`/user/MyPage`);
         });

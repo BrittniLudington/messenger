@@ -86,6 +86,8 @@ class SearchResults extends Component
             {
                 Server.getUsersByQuery(this.state.query).then(r =>
                     {
+                        console.log(r);
+
                         let res = r;
                         for(let i = 0; i < res.length; i++)
                         {
