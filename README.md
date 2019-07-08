@@ -65,11 +65,5 @@ To use the search feature:
 
 The following are currently known bugs. Under each one is a temporary solution until the bug is resolved.
 
-- Search query is buggy, it won't always bring up existing accounts despite having the query
--  Solution: leave the search bar blank to see all the users
-
-- Users can send messages to themselves
--  Solution: don't send messages to yourself
-
 - Users will still see messages they sent others. This shows up as a message From: You, this is not visually different enough from other messages
 -  Solution: look at where each message is from carefully

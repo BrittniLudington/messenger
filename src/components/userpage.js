@@ -75,15 +75,20 @@ export default class userPage extends Component
                             let from = window.atob(res.name);
                             if(res.id === this.state.id)
                                 from = "You";
-                            inbox.push(
-                                {From: res.id,
-                                    FromName: from,
-                                    header:window.atob(message.header),
-                                Sent: message.date,
-                                message: window.atob(message.subject),
-                                isRead:message.toread});
-
-                            this.setState({messages:inbox});
+                            Server.getAUser(message.to).then(resTo =>
+                                {
+                                    inbox.push(
+                                        {From: res.id,
+                                        ToName: window.atob(resTo.name),
+                                            FromName: from,
+                                            header:window.atob(message.header),
+                                        Sent: message.date,
+                                        message: window.atob(message.subject),
+                                        isRead:message.toread});
+        
+                                    this.setState({messages:inbox});
+                                })
+                            
         
                         })
                    
@@ -99,12 +104,23 @@ export default class userPage extends Component
                 {
 
                     let htmlpiece = (<li key={key}>
+                        <h3>To: {message.ToName}</h3>
                         <h3>From: {message.FromName} </h3>
                         <h4>Sent: {message.Sent}</h4>
                         <h4>{message.header}</h4>
                         <p>{message.message}</p>
                         <button onClick={(e) => this.handleReply(e,message.FromName,message.From)}>reply</button>
                         </li>);
+                    if(this.state.id === message.From)
+                    {
+                        htmlpiece = (<li key={key}>
+                        <h3>To: {message.ToName}</h3>
+                            <h3>From: {message.FromName} </h3>
+                            <h4>Sent: {message.Sent}</h4>
+                            <h4>{message.header}</h4>
+                            <p>{message.message}</p>
+                            </li>);
+                    }
                     if(this.state.filter === 1)
                     {
                         if(message.isRead)
