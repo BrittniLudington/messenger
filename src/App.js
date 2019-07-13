@@ -3,6 +3,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import loginsignup from './components/loginsignup';
 import userPage from './components/userpage';
 import SearchResults from './components/search';
+import "./style/overall.css";
 
 import './App.css';
 

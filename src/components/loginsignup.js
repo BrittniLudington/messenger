@@ -57,10 +57,9 @@ export default class loginsignup extends Component
     }
     render()
     {
-        return ( <section aria-label = "login">
+        return ( <section aria-label = "login" id="loginSection">
                     <header aria-label="app title">
             <h1>Private Messaging</h1>
-            <p>Name subject to change</p>
             </header>
             <Modal visible={this.state.signup} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>

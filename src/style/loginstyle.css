@@ -1,8 +1,73 @@
+@keyframes onLoad{
+    0%
+    {
+        background-color: white;
+    }
+    100%
+    {
+        background-color:skyblue;
+    }
+}
+
+@-webkit-keyframes onLoad
+{
+    0%
+    {
+        background-color: white;
+    }
+    100%
+    {
+        background-color:skyblue;
+    }
+}
+
+@-moz-keyframes onLoad
+{
+    0%
+    {
+        background-color: white;
+    }
+    100%
+    {
+        background-color:skyblue;
+    }
+}
 
 .block
 {
     display:block;
     margin-left:auto;
     margin-right:auto;
+}
+
+header
+{
+    width:50%;
+    margin:auto;
+    background-color: skyblue;
+    height:30%;
+    border-radius: 20px;
+    -webkit-animation-name: onLoad;
+    -webkit-animation-duration: 3s;
+    -moz-animation-duration: 3s ;
+    -moz-animation-name: onLoad;
+    animation-name: onLoad;
+    animation-duration: 3s;
+}
+
+#loginSection
+{
+    background-color:white;
+    margin:auto;
+    width:70%;
+    border-radius: 20px;
+}
+
+h1
+{
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    margin: 10px;
 }
 
