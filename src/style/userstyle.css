@@ -4,9 +4,23 @@ ul
     padding:5px;
 }
 
-li
+#userPage
 {
-    border: 1px black solid;
+    background-color:white;
+    width:70%;
+    margin:auto;
+    border-radius: 10px;
+}
+
+#username
+{
+    color:black;
+}
+
+.message
+{
+    border: 2px solid skyblue;
+    border-radius:10px;
 }
 
 p

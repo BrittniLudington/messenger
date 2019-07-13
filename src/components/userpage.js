@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import '../style/userstyle.css';
+import '../style/overall.css';
 import MessageBox from './messageBox';
 import Modal from 'react-awesome-modal';
 import Server from '../services/fetch-service';
@@ -103,7 +104,7 @@ export default class userPage extends Component
                 let html =  this.state.messages.map((message) =>
                 {
 
-                    let htmlpiece = (<li key={key}>
+                    let htmlpiece = (<li className="message" key={key}>
                         <h3>To: {message.ToName}</h3>
                         <h3>From: {message.FromName} </h3>
                         <h4>Sent: {message.Sent}</h4>
@@ -113,7 +114,7 @@ export default class userPage extends Component
                         </li>);
                     if(this.state.id === message.From)
                     {
-                        htmlpiece = (<li key={key}>
+                        htmlpiece = (<li className="message" key={key}>
                         <h3>To: {message.ToName}</h3>
                             <h3>From: {message.FromName} </h3>
                             <h4>Sent: {message.Sent}</h4>
@@ -176,15 +177,16 @@ export default class userPage extends Component
         }
         else
         {
-            return(<section aria-label="user page">
+            return(<section aria-label="page" >
             <Navbar />
+            <section aria-label="user page"id="userPage">
             <Modal visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>
                             <MessageBox receiver={this.state.receiver} id={this.state.receiverId} active={this.state.closeMessenger}/>
                             <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
                         </div>
                     </Modal>
-            <h1>{this.state.name}</h1>
+            <h1 id="username" className="Courgette">{this.state.name}</h1>
             <div aria-label="inbox">
             <ul aria-label="inbox filters" className="inline filterBox">
             <h2>Filters</h2>
@@ -192,11 +194,13 @@ export default class userPage extends Component
                 <li className="filters"><button onClick={(e)=>{this.swapFilter(e,2)}}>Received</button></li>
                 <li className="filters"><button onClick={(e)=>{this.swapFilter(e,3)}}>Sent</button></li>
             </ul>
-            <ul aria-label = "example mail" className="inline mail">
+            <ul aria-label = "example mail" className="inline mail Serif">
                 {this.showInbox()}
             </ul>
             </div>
 
+            </section>
+            
             </section>);
         }
         
