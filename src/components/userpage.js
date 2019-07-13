@@ -190,9 +190,9 @@ export default class userPage extends Component
             <div aria-label="inbox">
             <ul aria-label="inbox filters" className="inline filterBox">
             <h2>Filters</h2>
-                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,0)}}>All</button></li>
-                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,2)}}>Received</button></li>
-                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,3)}}>Sent</button></li>
+                <li className="filters"><button className="filterButton" onClick={(e)=>{this.swapFilter(e,0)}}>All</button></li>
+                <li className="filters"><button className="filterButton" onClick={(e)=>{this.swapFilter(e,2)}}>Received</button></li>
+                <li className="filters"><button className="filterButton" onClick={(e)=>{this.swapFilter(e,3)}}>Sent</button></li>
             </ul>
             <ul aria-label = "example mail" className="inline mail Serif">
                 {this.showInbox()}

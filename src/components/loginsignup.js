@@ -19,7 +19,8 @@ export default class loginsignup extends Component
             closeSignup:false,
             username:"",
             password:"",
-            invalid: false
+            invalid: false,
+            loggingIn:false
         }
         this.openMessage = this.openMessage.bind(this);
         this.closeMessage = this.closeMessage.bind(this);
@@ -78,6 +79,7 @@ export default class loginsignup extends Component
                 <input type="text" name="password" className="block" value={this.state.password} onChange={(e)=>this.updatePassword(e)}/>
                 <input type="submit" className="loginScreenButton Serif" value="Log in"/>
             </form>
+            {this.state.loggingIn ? <h3>Loading..</h3>:null}
             {this.state.invalid ? <h2>Username/Password incorrect!</h2>:null}
             </div>
             <p className="Serif">Don't have an account? Sign up for one here</p>
@@ -88,21 +90,22 @@ export default class loginsignup extends Component
     }
 
     handleLogin(e,props)
-{
-    e.preventDefault();
-    TokenService.saveToken({name:this.state.username,password:this.state.password});
-
-   Server.getUser().then(result=>
     {
-        if(!result)
+        e.preventDefault();
+        this.setState({loggingIn:true});
+        TokenService.saveToken({name:this.state.username,password:this.state.password});
+
+        Server.getUser().then(result=>
         {
-            this.setState({invalid:true});
-            return;
-        }
-        props.history.push(`/user/MyPage`);
+            if(!result)
+            {
+                this.setState({invalid:true,loggingIn:false});
+                return;
+            }
+            props.history.push(`/user/MyPage`);
 
-    })
+        })
 
-}
+    }
 }
 

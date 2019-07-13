@@ -9,4 +9,24 @@
     border:1px solid black;
     height: 30px;
     text-align: center;
+    background-color:white;
+    border-radius: 5px;
+}
+
+.searchButton
+{
+    background-color:white;
+    font-weight: bold;
+    border-color: skyblue;
+    border-radius:5px;
+}
+
+.searchButton:active
+{
+    border-color:#8bff7e;
+}
+
+.searchButton:hover
+{
+    border-color:#8bff7e; 
 }

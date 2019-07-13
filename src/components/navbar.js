@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import '../style/navbarstyle.css';
+import '../style/overall.css'
 import TokenService from '../services/token-service';
 import Server from '../services/fetch-service';
 
@@ -49,23 +50,23 @@ class Navbar extends Component
         if(this.state.redirect)
         {
             this.setState({redirect:false});
-            return(<section aria-label = "navbar" className="navbar">
+            return(<section aria-label = "navbar" className="navbar Serif">
                         <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
             <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link>
                 <form aria-label = "search" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
                     <input type = "text"  onChange={this.handleChange}/>
-                    <input type = "submit" value="Search"/>
+                    <input type = "submit" className="searchButton" value="Search"/>
                 </form>
                 <Redirect to ={this.state.redirectTo}></Redirect>
             </section>);
         }
         return (
-            <section aria-label = "navbar" className = "navbar">
+            <section aria-label = "navbar" className = "navbar Serif">
                     <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
             <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link>
                 <form aria-label = "search" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
                     <input type = "text"  onChange={this.handleChange}/>
-                    <input type = "submit" value="Search"/>
+                    <input type = "submit" className="searchButton" value="Search"/>
                 </form>
             </section>
         );

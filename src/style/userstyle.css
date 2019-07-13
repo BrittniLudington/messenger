@@ -17,6 +17,24 @@ ul
     color:black;
 }
 
+.filterButton
+{
+    background-color:white;
+    font-weight: bold;
+    border-color: skyblue;
+    border-radius:5px;
+}
+
+.filterButton:active
+{
+    border-color:#8bff7e;
+}
+
+.filterButton:hover
+{
+    border-color:#8bff7e; 
+}
+
 .message
 {
     border: 2px solid skyblue;
