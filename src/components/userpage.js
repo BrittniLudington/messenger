@@ -132,7 +132,7 @@ export default class userPage extends Component
                     }
                     else if(this.state.filter === 2)
                     {
-                        if(!message.isRead)
+                        if(message.From !== this.state.id)//if(!message.isRead)
                         {
                             key++;
                             return htmlpiece;
@@ -189,8 +189,7 @@ export default class userPage extends Component
             <ul aria-label="inbox filters" className="inline filterBox">
             <h2>Filters</h2>
                 <li className="filters"><button onClick={(e)=>{this.swapFilter(e,0)}}>All</button></li>
-                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,1)}}>Read</button></li>
-                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,2)}}>Unread</button></li>
+                <li className="filters"><button onClick={(e)=>{this.swapFilter(e,2)}}>Received</button></li>
                 <li className="filters"><button onClick={(e)=>{this.swapFilter(e,3)}}>Sent</button></li>
             </ul>
             <ul aria-label = "example mail" className="inline mail">
