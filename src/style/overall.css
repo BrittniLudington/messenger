@@ -2,3 +2,13 @@ body
 {
     background-color:skyblue;
 }
+
+.Serif
+{
+    font-family: 'PT Serif', serif;
+}
+
+.Courgette
+{
+    font-family: 'Courgette', cursive;
+}

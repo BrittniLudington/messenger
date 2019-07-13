@@ -43,7 +43,8 @@
 header
 {
     width:50%;
-    margin:auto;
+    margin-left:auto;
+    margin-right:auto;
     background-color: skyblue;
     height:30%;
     border-radius: 20px;
@@ -53,14 +54,35 @@ header
     -moz-animation-name: onLoad;
     animation-name: onLoad;
     animation-duration: 3s;
+
 }
 
 #loginSection
 {
     background-color:white;
-    margin:auto;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:0;
     width:70%;
     border-radius: 20px;
+}
+
+.loginScreenButton
+{
+    background-color:white;
+    font-weight: bold;
+    border-color: skyblue;
+    border-radius:5px;
+}
+
+.loginScreenButton:active
+{
+    border-color:#8bff7e;
+}
+
+.loginScreenButton:hover
+{
+    border-color:#8bff7e; 
 }
 
 h1
@@ -68,6 +90,7 @@ h1
     color: white;
     font-size: 40px;
     text-align: center;
-    margin: 10px;
+    margin-top: 0px;
+    
 }
 

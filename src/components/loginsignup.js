@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import '../style/loginstyle.css'
+import '../style/overall.css'
+
 import Modal from 'react-awesome-modal';
 import SignUp from './SignUpBox';
 import Server from '../services/fetch-service';
@@ -58,7 +60,7 @@ export default class loginsignup extends Component
     render()
     {
         return ( <section aria-label = "login" id="loginSection">
-                    <header aria-label="app title">
+                    <header aria-label="app title" className="Courgette">
             <h1>Private Messaging</h1>
             </header>
             <Modal visible={this.state.signup} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
@@ -69,17 +71,17 @@ export default class loginsignup extends Component
             </Modal>
             <div aria-label="log in">
             <h2>Log in</h2>
-            <form id = "loginForm" onSubmit={(e) =>this.handleLogin(e, this.props)}>
+            <form id = "loginForm" className="Serif" onSubmit={(e) =>this.handleLogin(e, this.props)}>
                 <label htmlFor="true" name="username">Username:</label>
                 <input type="text" name="username" className="block" value={this.state.username} onChange={(e)=>this.updateName(e)}/>
                 <label htmlFor="true" name="password">Password:</label>
                 <input type="text" name="password" className="block" value={this.state.password} onChange={(e)=>this.updatePassword(e)}/>
-                <input type="submit" value="Log in"/>
+                <input type="submit" className="loginScreenButton Serif" value="Log in"/>
             </form>
             {this.state.invalid ? <h2>Username/Password incorrect!</h2>:null}
             </div>
-            <p>Don't have an account? Sign up for one here</p>
-            <button onClick={(e)=>this.openMessage(e)}>Sign Up</button>
+            <p className="Serif">Don't have an account? Sign up for one here</p>
+            <button onClick={(e)=>this.openMessage(e)} className="loginScreenButton Serif">Sign Up</button>
         </section>
 
         );
