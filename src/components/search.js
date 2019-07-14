@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import '../style/searchstyle.css';
+import '../style/overall.css';
 import MessageBox from './messageBox';
 import Modal from 'react-awesome-modal';
 import Server from '../services/fetch-service';
@@ -86,7 +87,6 @@ class SearchResults extends Component
             {
                 Server.getUsersByQuery(this.state.query).then(r =>
                     {
-                        console.log(r);
 
                         let res = r;
                         for(let i = 0; i < res.length; i++)
@@ -117,8 +117,8 @@ class SearchResults extends Component
                 if(count > users.length-1) break;
                 let u = users[count];
                 singleRow.push(<td key={users[count].id}>
-                    <h2>{users[count].name}</h2>
-                    <button onClick={(e)=>{this.handleReply(e,u.name, u.id)}}>send message</button>
+                    <h2 className="Serif">{users[count].name}</h2>
+                    <button className="Serif userButton" onClick={(e)=>{this.handleReply(e,u.name, u.id)}}>send message</button>
                 </td>);
                 count++;
             }
@@ -150,13 +150,16 @@ class SearchResults extends Component
                             <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
                         </div>
                     </Modal>
-                <h1>Results for {this.state.query}</h1>
-            <table aria-label="users found in query">
-                <tbody>
-                {this.showResults()}
-                </tbody>
+            <section aria-label="main" className="results">
+                <h1 className="Courgette query">Results for {this.state.query}</h1>
+                <table aria-label="users found in query" className="allResults">
+                    <tbody>
+                    {this.showResults()}
+                    </tbody>
                 
-            </table>
+                </table>
+            </section>
+
             </section>
         );
     }

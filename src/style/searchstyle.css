@@ -1,4 +1,43 @@
 td
 {
     border: 1px solid black;
+    border-radius:5px;
 }
+
+.userButton
+{
+    background-color:white;
+    font-weight: bold;
+    border-color: skyblue;
+    border-radius:5px;
+}
+
+.userButton:active
+{
+    border-color:#8bff7e;
+}
+
+.userButton:hover
+{
+    border-color:#8bff7e; 
+}
+
+.allResults
+{
+    width:100%;
+}
+
+.results
+{
+    width:70%;
+    background-color:white;
+    margin:auto;
+    border-radius:15px;
+    padding:5px;
+}
+
+.query
+{
+    color:black;
+}
+

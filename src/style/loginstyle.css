@@ -73,6 +73,8 @@ header
     font-weight: bold;
     border-color: skyblue;
     border-radius:5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .loginScreenButton:active
@@ -85,7 +87,7 @@ header
     border-color:#8bff7e; 
 }
 
-h1
+#title
 {
     color: white;
     font-size: 40px;
@@ -94,3 +96,23 @@ h1
     
 }
 
+@media (max-width:525px)
+{
+    #title
+    {
+        font-size: 30px;
+    }
+
+    .loginScreenButton
+    {
+        width: 50%;
+    }
+}
+
+@media(max-width:400px)
+{
+    #title
+    {
+        font-size: 20px;
+    }
+}

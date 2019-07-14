@@ -2,11 +2,17 @@
 {
     padding: 5px;
     float:left;
+    text-decoration-line: none;
+    color:blue;
+}
+
+.entry:hover
+{
+    text-decoration-line: underline;
 }
 
 .navbar
 {
-    border:1px solid black;
     height: 30px;
     text-align: center;
     background-color:white;
