@@ -53,7 +53,7 @@ class Navbar extends Component
             return(<section aria-label = "navbar" className="navbar Serif">
                         <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
             <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link>
-                <form aria-label = "search" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
+                <form aria-label = "search" className="searchForm" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
                     <input type = "text"  onChange={this.handleChange}/>
                     <input type = "submit" className="searchButton" value="Search"/>
                 </form>
@@ -64,7 +64,7 @@ class Navbar extends Component
             <section aria-label = "navbar" className = "navbar Serif">
                     <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
             <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link>
-                <form aria-label = "search" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
+                <form aria-label = "search" className="searchForm" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
                     <input type = "text"  onChange={this.handleChange}/>
                     <input type = "submit" className="searchButton" value="Search"/>
                 </form>

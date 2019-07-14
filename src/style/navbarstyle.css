@@ -11,6 +11,12 @@
     text-decoration-line: underline;
 }
 
+.searchForm
+{
+    background-color:white;
+    border-radius:5px;
+}
+
 .navbar
 {
     height: 30px;
