@@ -36,6 +36,19 @@ ul
     border-color:#8bff7e; 
 }
 
+.replyButton
+{
+    background-color:white;
+    font-weight: bold;
+    border-color: skyblue;
+    border-radius:5px;
+}
+
+.replyButton:hover
+{
+    border-color:#8bff7e; 
+}
+
 .message
 {
     border: 2px solid skyblue;
@@ -73,10 +86,32 @@ p
     margin:none;
 }
 
+#close
+{
+    text-decoration-line: none;
+    color:blue;
+}
+
+#close:hover
+{
+    text-decoration-line: underline;
+}
+
 @media (max-width:330px)
 {
     .mail
     {
         width:90%;
+    }
+
+    .replyButton
+    {
+        width:80%;
+        font-size: 20px;
+    }
+
+    .filterButton
+    {
+        font-size:20px;
     }
 }

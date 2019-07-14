@@ -100,6 +100,11 @@ class SearchResults extends Component
         });
     }
 
+    componentDidUpdate()
+    {
+        console.log("update");
+    }
+
     showResults()
     {
         let numPerRow = 4;
@@ -108,7 +113,14 @@ class SearchResults extends Component
         let count = 0;
         let table = [];
 
-        for(let i = 0; i < rows; i++)
+        for(let i = 0; i < users.length; i++)
+        {
+            table.push(<li key = {users[i].id} className="aUser">
+            <h2 className="Serif username">{users[i].name}</h2>
+                    <button className="Serif userButton" onClick={(e)=>{this.handleReply(e,users[i].name, users[i].id)}}>send message</button>
+            </li>)
+        }
+        /*for(let i = 0; i < rows; i++)
         {
             let singleRow = [];
 
@@ -124,6 +136,7 @@ class SearchResults extends Component
             }
             table.push(<tr key={i}>{singleRow}</tr>);
         }
+        */
 
         return table;
     }
@@ -152,17 +165,23 @@ class SearchResults extends Component
                     </Modal>
             <section aria-label="main" className="results">
                 <h1 className="Courgette query">Results for {this.state.query}</h1>
-                <table aria-label="users found in query" className="allResults">
-                    <tbody>
-                    {this.showResults()}
-                    </tbody>
-                
-                </table>
+                <ul aria-label = "users found in query" className="allResults">
+                {this.showResults()}
+                </ul>
             </section>
 
             </section>
         );
     }
 }
+
+/*
+<table aria-label="users found in query" className="allResults">
+                    <tbody>
+                    {this.showResults()}
+                    </tbody>
+                
+                </table>
+*/
 
 export default SearchResults;

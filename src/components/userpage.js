@@ -110,7 +110,7 @@ export default class userPage extends Component
                         <h4>Sent: {message.Sent}</h4>
                         <h4>{message.header}</h4>
                         <p>{message.message}</p>
-                        <button onClick={(e) => this.handleReply(e,message.FromName,message.From)}>reply</button>
+                        <button className="replyButton" onClick={(e) => this.handleReply(e,message.FromName,message.From)}>reply</button>
                         </li>);
                     if(this.state.id === message.From)
                     {
@@ -180,10 +180,10 @@ export default class userPage extends Component
             return(<section aria-label="page" >
             <Navbar />
             <section aria-label="user page"id="userPage">
-            <Modal visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
+            <Modal id="modal" visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>
                             <MessageBox receiver={this.state.receiver} id={this.state.receiverId} active={this.state.closeMessenger}/>
-                            <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
+                            <a href="javascript:void(0);" id="close" onClick={() => this.closeMessage()}>Close</a>
                         </div>
                     </Modal>
             <h1 id="username" className="Courgette">{this.state.name}</h1>
