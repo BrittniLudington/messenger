@@ -19,19 +19,9 @@ class Navbar extends Component
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
-        this.accountPrivs = this.accountPrivs.bind(this);
         this.signOut = this.signOut.bind(this);
     }
 
-    accountPrivs()
-    {
-        //if(this.state.isLoggedIn)
-        //{
-            return (<div aria-label="super secret account stuff">
-            <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
-            <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link></div>);
-        //}
-    }
 
     componentDidMount()
     {

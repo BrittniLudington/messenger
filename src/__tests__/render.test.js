@@ -8,6 +8,7 @@ import SearchResults from '../components/search';
 import MessageBox from '../components/messageBox';
 import Navbar from '../components/navbar';
 
+
 describe('main pages render successfully',()=>
 {
     it("login signup renders",()=>
@@ -26,13 +27,7 @@ describe('main pages render successfully',()=>
         ReactDOM.unmountComponentAtNode(element);
     });
 
-    it("search results page renders",()=>
-    {
-        const element = document.createElement('div');
-    
-        ReactDOM.render(<SearchResults/>,element);
-        ReactDOM.unmountComponentAtNode(element);
-    })
+
 });
 
 describe('side components render successfully',()=>

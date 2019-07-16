@@ -40,7 +40,6 @@ export default class userPage extends Component
     {
             Server.getUser().then(res=>
             {
-                //        props.history.push(`/user/MyPage`);
                 if(res === false)
                 {
                     this.props.history.push('/login');
@@ -133,7 +132,7 @@ export default class userPage extends Component
                     }
                     else if(this.state.filter === 2)
                     {
-                        if(message.From !== this.state.id)//if(!message.isRead)
+                        if(message.From !== this.state.id)
                         {
                             key++;
                             return htmlpiece;

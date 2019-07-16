@@ -34,7 +34,6 @@ class SearchResults extends Component
     {
             Server.getUser().then(res=>
             {
-                //        props.history.push(`/user/MyPage`);
                 if(res === false)
                 {
                     this.props.history.push('/login');
@@ -100,17 +99,9 @@ class SearchResults extends Component
         });
     }
 
-    componentDidUpdate()
-    {
-        console.log("update");
-    }
-
     showResults()
     {
-        let numPerRow = 4;
-        let rows = this.state.results.length % numPerRow;
         let users = this.state.results;
-        let count = 0;
         let table = [];
 
         for(let i = 0; i < users.length; i++)
@@ -120,24 +111,7 @@ class SearchResults extends Component
                     <button className="Serif userButton" onClick={(e)=>{this.handleReply(e,users[i].name, users[i].id)}}>send message</button>
             </li>)
         }
-        /*for(let i = 0; i < rows; i++)
-        {
-            let singleRow = [];
-
-            for(let j = 0; j < numPerRow; j++)
-            {
-                if(count > users.length-1) break;
-                let u = users[count];
-                singleRow.push(<td key={users[count].id}>
-                    <h2 className="Serif">{users[count].name}</h2>
-                    <button className="Serif userButton" onClick={(e)=>{this.handleReply(e,u.name, u.id)}}>send message</button>
-                </td>);
-                count++;
-            }
-            table.push(<tr key={i}>{singleRow}</tr>);
-        }
-        */
-
+     
         return table;
     }
     render()
@@ -175,13 +149,6 @@ class SearchResults extends Component
     }
 }
 
-/*
-<table aria-label="users found in query" className="allResults">
-                    <tbody>
-                    {this.showResults()}
-                    </tbody>
-                
-                </table>
-*/
+
 
 export default SearchResults;
