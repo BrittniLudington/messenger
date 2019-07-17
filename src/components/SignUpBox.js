@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import TokenService from '../services/token-service';
 import Server from '../services/fetch-service';
+import '../style/overall.css';
+import '../style/messagestyle.css';
 
 export default class SignUp extends Component
 {
@@ -56,14 +58,13 @@ export default class SignUp extends Component
 
         return(
             <section aria-label = "signup area" className="messageBox">
-            <h2>Sign Up</h2>
-            <form id = "loginForm" onSubmit={(e) =>this.handleSignin(e)}>
-                <label htmlFor="true" name="username">Username:</label>
-                <input onChange={(e)=>this.nameChanged(e)} type="text" name="username" className="block"/>
-                <label htmlFor="true" name="password">Password:</label>
-                <input onChange={(e)=>this.passwordChanged(e)} type="text" name="password" className="block"/>
+            <h2 className="Courgette">Sign Up</h2>
+            <form id = "loginForm" className="Serif" onSubmit={(e) =>this.handleSignin(e)}>
+                <label htmlFor="true" className="text" name="username">Username:</label>
+                <input onChange={(e)=>this.nameChanged(e)} type="text" name="username" className="block text"/>
+                <label htmlFor="true" className="text" name="password">Password:</label>
+                <input onChange={(e)=>this.passwordChanged(e)} type="text" name="password" className="block text"/>
                 <input type="submit" value="Register account" disabled={!this.isValid()}/>
-                <p>If the input is invalid, a popup will show stating that either the username or password is invalid.</p>
             </form>
             </section>
 

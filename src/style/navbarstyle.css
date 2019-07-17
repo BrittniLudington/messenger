@@ -3,7 +3,7 @@
     padding: 5px;
     float:left;
     text-decoration-line: none;
-    color:blue;
+    color:black;
 }
 
 .entry:hover
@@ -23,6 +23,7 @@
     text-align: center;
     background-color:white;
     border-radius: 5px;
+    vertical-align: baseline;
 }
 
 .searchButton
@@ -41,4 +42,18 @@
 .searchButton:hover
 {
     border-color:#8bff7e; 
+}
+
+@media(max-width:560px)
+{
+    .queryBox
+    {
+        width: 30%;
+        font-size: 20px;
+    }
+
+    .searchButton
+    {
+        font-size: 20px;
+    }
 }

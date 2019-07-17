@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import '../style/messagestyle.css';
+import '../style/overall.css';
 import Server from '../services/fetch-service';
 export default class MessageBox extends Component
 {
@@ -40,13 +41,13 @@ export default class MessageBox extends Component
 
 
         return(
-            <section aria-label = "message area" className="messageBox">
+            <section aria-label = "message area" className="messageBox Serif text">
             <h1>Send message to {this.props.receiver}?</h1>
             <label>Subject
-                <textarea rows="1" cols="50" onChange={(e) => this.headerChanged(e)}></textarea>
+                <textarea className="text Serif input" rows="1" cols="25" onChange={(e) => this.headerChanged(e)}></textarea>
             </label>
-            <textarea rows="7" cols="50" onChange={(e) => this.messageChanged(e)}></textarea>
-            <button onClick={(e) =>(this.handleSend(e,this.props.id))}>Send</button>
+            <textarea className=" Serif text input" rows="4" cols="25" onChange={(e) => this.messageChanged(e)}></textarea>
+            <button className="send" onClick={(e) =>(this.handleSend(e,this.props.id))}>Send</button>
             </section>
 
         );

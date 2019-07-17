@@ -10,6 +10,19 @@
     }
 }
 
+
+#closeSend
+{
+    color:black;
+    text-decoration-line: none;
+    background-color:white;
+}
+
+#closeSend:hover
+{
+    text-decoration-line: underline;
+}
+
 td
 {
     border: 1px solid black;
@@ -19,9 +32,9 @@ td
 .userButton
 {
     background-color:white;
-    font-weight: bold;
     border-color: skyblue;
     border-radius:5px;
+    font-size: 20px;
 }
 
 .userButton:active

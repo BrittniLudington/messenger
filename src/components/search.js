@@ -128,17 +128,20 @@ class SearchResults extends Component
             <h1 aria-label="loading screen">Loading</h1>
             </section>);
         }
+        let result = this.state.query;
+        if(result === undefined)
+            result = '*';
         return (
             <section aria-label="search results">
             <Navbar/>
-            <Modal visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
+            <Modal visible={this.state.writingMessage} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>
                             <MessageBox id={this.state.idToSend} receiver={this.state.receiver} active={this.state.closeMessenger}/>
-                            <a href="javascript:void(0);" onClick={() => this.closeMessage()}>Close</a>
+                            <a href="javascript:void(0);" id="closeSend" onClick={() => this.closeMessage()}>Close</a>
                         </div>
                     </Modal>
             <section aria-label="main" className="results">
-                <h1 className="Courgette query">Results for {this.state.query}</h1>
+                <h1 className="Courgette query">Results for {result}</h1>
                 <ul aria-label = "users found in query" className="allResults">
                 {this.showResults()}
                 </ul>

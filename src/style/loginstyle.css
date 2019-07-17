@@ -33,6 +33,63 @@
     }
 }
 
+@keyframes aboutAppear
+{
+    0%
+    {
+        display:none;
+        opacity: 0;
+    }
+    1%
+    {
+        display:block;
+        opacity: 0;
+    }
+    100%
+    {
+        display:block;
+        opacity:1;
+    }
+}
+
+#closeSignUp
+{
+    color:black;
+    text-decoration-line: none;
+}
+
+#closeSignUp:hover
+{
+    text-decoration-line: underline;
+}
+
+#aboutLink
+{
+    border:2px solid skyblue;
+    width:20%;
+    margin-left:5%;
+    cursor: pointer;
+    display:block;
+    font-size:25px;
+}
+
+#about
+{
+    border:2px solid skyblue;
+    width:50%;
+    opacity: 0;
+    float:right;
+    background-color:white;
+    border-radius:10px;
+}
+
+#aboutLink:hover + #about
+{
+    animation-name: aboutAppear;
+    animation-duration: 2s;
+    opacity:1;
+}
+
 .block
 {
     display:block;
@@ -67,6 +124,17 @@ header
     border-radius: 20px;
 }
 
+#loginForm
+{
+    width:auto;
+    font-size: 25px;
+}
+
+.input
+{
+    font-size: 25px;
+}
+
 .loginScreenButton
 {
     background-color:white;
@@ -75,6 +143,7 @@ header
     border-radius:5px;
     margin-top: 5px;
     margin-bottom: 5px;
+    font-size:25px;
 }
 
 .loginScreenButton:active
@@ -93,7 +162,16 @@ header
     font-size: 40px;
     text-align: center;
     margin-top: 0px;
-    
+    vertical-align: baseline;
+}
+
+#credits
+{
+    position: absolute;
+    bottom:0;
+    right:0;
+    width:10%;
+    margin:0;
 }
 
 @media (max-width:525px)
@@ -107,12 +185,35 @@ header
     {
         width: 50%;
     }
+
+    #aboutLink
+    {
+        width:40%;
+    }
 }
 
 @media(max-width:400px)
 {
     #title
     {
-        font-size: 20px;
+        font-size: 30px;
+    }
+
+    header
+    {
+        width: 80%;
+    }
+}
+
+@media(max-width:460px)
+{
+    #loginSection
+    {
+        width:80%;
+    }
+
+    .input
+    {
+        width: 60%;
     }
 }

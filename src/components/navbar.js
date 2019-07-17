@@ -44,8 +44,8 @@ class Navbar extends Component
                         <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
             <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link>
                 <form aria-label = "search" className="searchForm" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
-                    <input type = "text"  onChange={this.handleChange}/>
-                    <input type = "submit" className="searchButton" value="Search"/>
+                    <input type = "text" className="text queryBox"  onChange={this.handleChange}/>
+                    <input type = "submit" className="searchButton text" value="Search"/>
                 </form>
                 <Redirect to ={this.state.redirectTo}></Redirect>
             </section>);
@@ -55,8 +55,8 @@ class Navbar extends Component
                     <Link to = {'/user/MyPage'} className = "entry">My Page</Link>
             <Link to = {'/login'} onClick={(e)=>this.signOut(e)} className = "entry">Sign out</Link>
                 <form aria-label = "search" className="searchForm" onSubmit={(e) => this.handleSearch(e, this.state.query,this.props)}>
-                    <input type = "text"  onChange={this.handleChange}/>
-                    <input type = "submit" className="searchButton" value="Search"/>
+                    <input type = "text" className="text queryBox" onChange={this.handleChange}/>
+                    <input type = "submit" className="searchButton text" value="Search"/>
                 </form>
             </section>
         );

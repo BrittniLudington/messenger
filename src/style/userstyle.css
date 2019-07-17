@@ -15,7 +15,7 @@ ul
 #username
 {
     color:black;
-    font-size:40px;
+    font-size:50px;
 }
 
 .filterButton
@@ -24,6 +24,7 @@ ul
     font-weight: bold;
     border-color: skyblue;
     border-radius:5px;
+    font-size: 25px;
 }
 
 .filterButton:active
@@ -42,6 +43,7 @@ ul
     font-weight: bold;
     border-color: skyblue;
     border-radius:5px;
+    font-size:25px;
 }
 
 .replyButton:hover
@@ -89,7 +91,7 @@ p
 #close
 {
     text-decoration-line: none;
-    color:blue;
+    color:black;
 }
 
 #close:hover
