@@ -33,24 +33,7 @@
     }
 }
 
-@keyframes aboutAppear
-{
-    0%
-    {
-        display:none;
-        opacity: 0;
-    }
-    1%
-    {
-        display:block;
-        opacity: 0;
-    }
-    100%
-    {
-        display:block;
-        opacity:1;
-    }
-}
+
 
 #closeSignUp
 {
@@ -63,32 +46,18 @@
     text-decoration-line: underline;
 }
 
-#aboutLink
-{
-    border:2px solid skyblue;
-    width:20%;
-    margin-left:5%;
-    cursor: pointer;
-    display:block;
-    font-size:25px;
-}
+
 
 #about
 {
     border:2px solid skyblue;
     width:50%;
-    opacity: 0;
-    float:right;
+    opacity: 1;
     background-color:white;
     border-radius:10px;
 }
 
-#aboutLink:hover + #about
-{
-    animation-name: aboutAppear;
-    animation-duration: 2s;
-    opacity:1;
-}
+
 
 .block
 {
@@ -124,7 +93,7 @@ header
     border-radius: 20px;
 }
 
-#loginForm
+.loginForm
 {
     width:auto;
     font-size: 25px;

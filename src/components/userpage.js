@@ -179,7 +179,7 @@ export default class userPage extends Component
             return(<section aria-label="page" >
             <Navbar />
             <section aria-label="user page"id="userPage">
-            <Modal id="modal" visible={this.state.writingMessage} width="400" height="300" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
+            <Modal id="modal" visible={this.state.writingMessage} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>
                             <MessageBox receiver={this.state.receiver} id={this.state.receiverId} active={this.state.closeMessenger}/>
                             <a href="javascript:void(0);" id="close" onClick={() => this.closeMessage()}>Close</a>
