@@ -1,4 +1,10 @@
 
+.loginForm
+{
+    width: 100%;
+    margin:auto;
+}
+
 .messageBox
 {
     width:100%;
@@ -6,6 +12,16 @@
     z-index: 5;
     padding-bottom:10px;
     overflow: hidden;
+}
+
+.userInfo
+{
+    width: 80%;
+}
+
+.registerButton
+{
+    width:70%;
 }
 
 .send
@@ -47,4 +63,12 @@
         
         
     }   
+}
+
+@media(max-width:305px)
+{
+    .registerButton
+    {
+        width:90%;
+    }
 }

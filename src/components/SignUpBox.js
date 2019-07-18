@@ -57,14 +57,14 @@ export default class SignUp extends Component
 
 
         return(
-            <section aria-label = "signup area" className="messageBox">
+            <section aria-label = "signup area" className="messageBox Serif">
             <h2 className="Courgette">Sign Up</h2>
             <form  className="Serif loginForm" onSubmit={(e) =>this.handleSignin(e)}>
                 <label htmlFor="true" className="text" name="username">Username:</label>
-                <input onChange={(e)=>this.nameChanged(e)} type="text" name="username" className="block text"/>
+                <input onChange={(e)=>this.nameChanged(e)} type="text" name="username" className="userInfo text"/>
                 <label htmlFor="true" className="text" name="password">Password:</label>
-                <input onChange={(e)=>this.passwordChanged(e)} type="password" name="password" className="block text"/>
-                <input type="submit" className="send" value="Register account" disabled={!this.isValid()}/>
+                <input onChange={(e)=>this.passwordChanged(e)} type="password" name="password" className="userInfo text"/>
+                <input type="submit" className="send registerButton" value="Register account" disabled={!this.isValid()}/>
             </form>
             </section>
 
