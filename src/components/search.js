@@ -142,6 +142,7 @@ class SearchResults extends Component
                     </Modal>
             <section aria-label="main" className="results">
                 <h1 className="Courgette query">Results for {result}</h1>
+                {this.state.results.length === 0 ? <h2 className="Serif">No accounts of {this.state.query} found</h2> : ""}
                 <ul aria-label = "users found in query" className="allResults">
                 {this.showResults()}
                 </ul>
