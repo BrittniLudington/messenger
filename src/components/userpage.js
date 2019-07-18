@@ -28,6 +28,7 @@ export default class userPage extends Component
         this.showInbox = this.showInbox.bind(this);
         this.getMessages = this.getMessages.bind(this);
         this.swapFilter = this.swapFilter.bind(this);
+        this.convertDate = this.convertDate.bind(this);
     }
 
     swapFilter(e,filter)
@@ -56,6 +57,17 @@ export default class userPage extends Component
 
     }
 
+    convertDate(original)
+    {
+        let date = new Date(original);
+        let month = date.getMonth();
+        let day = date.getDay();
+        let year = date.getFullYear();
+
+
+        return `${month}/${day}/${year}`;
+    }
+
     getMessages()
     {
         Server.getRelatedMessages(this.state.id).then(res=>
@@ -82,7 +94,7 @@ export default class userPage extends Component
                                         ToName: window.atob(resTo.name),
                                             FromName: from,
                                             header:window.atob(message.header),
-                                        Sent: message.date,
+                                        Sent: this.convertDate(message.date),
                                         message: window.atob(message.subject),
                                         isRead:message.toread});
         

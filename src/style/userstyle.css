@@ -25,6 +25,7 @@ ul
     border-color: skyblue;
     border-radius:5px;
     font-size: 25px;
+    width: 100%;
 }
 
 .filterButton:active
@@ -74,7 +75,7 @@ p
 
 .filters
 {
-    width:20%;
+    width:100%;
 }
 
 .filterBox
