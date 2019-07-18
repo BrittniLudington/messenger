@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 import loginsignup from '../components/loginsignup';
 import userPage from '../components/userpage';
+import SignUp from '../components/SignUpBox';
 import SearchResults from '../components/search';
 import MessageBox from '../components/messageBox';
 import Navbar from '../components/navbar';
@@ -27,7 +28,13 @@ describe('main pages render successfully',()=>
         ReactDOM.unmountComponentAtNode(element);
     });
 
+    it("search page renders",()=>
+    {
+        const element = document.createElement('div');
 
+        ReactDOM.render(<BrowserRouter><SearchResults match={{params:{username:"te"}}}/></BrowserRouter>,element);
+        ReactDOM.unmountComponentAtNode(element);
+    })
 });
 
 describe('side components render successfully',()=>
@@ -47,6 +54,14 @@ describe('side components render successfully',()=>
         ReactDOM.render(<MessageBox active="true"/>,element);
         ReactDOM.unmountComponentAtNode(element);
     });
+
+    it("Sign in box on login page renders successfully",()=>
+    {
+        const element = document.createElement('div');
+
+        ReactDOM.render(<SignUp active = "true"></SignUp>,element);
+        ReactDOM.unmountComponentAtNode(element);
+    })
 
     it("Navbar renders",()=>
     {
