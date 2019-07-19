@@ -12,7 +12,8 @@ export default class MessageBox extends Component
             message:"",
             sent: false,
             to: null,
-            header: ""
+            header: "",
+            isSendable: false
         }
         this.handleSend = this.handleSend.bind(this);
         this.messageChanged = this.messageChanged.bind(this);
@@ -47,7 +48,7 @@ export default class MessageBox extends Component
                 <textarea className="text Serif input" rows="1" cols="25" onChange={(e) => this.headerChanged(e)}></textarea>
             </label>
             <textarea className=" Serif text input" rows="4" cols="25" onChange={(e) => this.messageChanged(e)}></textarea>
-            <button className="send" onClick={(e) =>(this.handleSend(e,this.props.id))}>Send</button>
+            <button className="send" disabled={!this.state.isSendable} onClick={(e) =>(this.handleSend(e,this.props.id))}>Send</button>
             </section>
 
         );
@@ -55,12 +56,24 @@ export default class MessageBox extends Component
 
     messageChanged(e)
     {
-        this.setState({message:e.target.value});
+        this.setState({message:e.target.value},()=>
+        {
+            if(this.state.header.length > 0 && this.state.message.length > 0)
+                this.setState({isSendable:true})
+            else
+                this.setState({isSendable:false})
+        });
     }
 
     headerChanged(e)
     {
-        this.setState({header:e.target.value})
+        this.setState({header:e.target.value},()=>
+        {
+            if(this.state.header.length > 0 && this.state.message.length > 0)
+                this.setState({isSendable:true})
+            else
+                this.setState({isSendable:false})
+        })
     }
 
     handleSend(e,id)
