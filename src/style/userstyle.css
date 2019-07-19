@@ -95,6 +95,11 @@ p
     color:black;
 }
 
+#username
+{
+    word-break: break-all;
+}
+
 #close:hover
 {
     text-decoration-line: underline;
