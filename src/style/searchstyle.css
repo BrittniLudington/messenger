@@ -56,8 +56,10 @@ td
 .username
 {
     word-wrap: break-word;
+    word-break: break-all;
     color:white;
-
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .aUser
@@ -69,8 +71,8 @@ td
     background-color:skyblue;
     animation-name:bubble;
     animation-duration:2s;
-    padding-left:5px;
-    padding-right:5px;
+    padding-left:10px;
+    padding-right:10px;
 }
 
 .results
