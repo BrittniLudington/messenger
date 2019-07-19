@@ -134,7 +134,7 @@ class SearchResults extends Component
         return (
             <section aria-label="search results">
             <Navbar/>
-            <Modal visible={this.state.writingMessage} width="400" height="400" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
+            <Modal visible={this.state.writingMessage} width="400" height="450" effect="fadeInUp" onClickAway={() => this.closeMessage()}>
                         <div>
                             <MessageBox id={this.state.idToSend} receiver={this.state.receiver} active={this.state.closeMessenger}/>
                             <a href="javascript:void(0);" id="closeSend" onClick={() => this.closeMessage()}>Close</a>

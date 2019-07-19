@@ -43,7 +43,7 @@ export default class MessageBox extends Component
 
         return(
             <section aria-label = "message area" className="messageBox Serif text">
-            <h1>Send message to {this.props.receiver}?</h1>
+            <h1 id="name">Send message to {this.props.receiver}?</h1>
             <label>Subject
                 <textarea className="text Serif input" rows="1" cols="25" onChange={(e) => this.headerChanged(e)}></textarea>
             </label>

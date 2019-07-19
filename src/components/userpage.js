@@ -116,21 +116,21 @@ export default class userPage extends Component
                 {
 
                     let htmlpiece = (<li className="message" key={key}>
-                        <h3>To: {message.ToName}</h3>
-                        <h3>From: {message.FromName} </h3>
+                        <h3 className="break">To: {message.ToName}</h3>
+                        <h3 className="break">From: {message.FromName} </h3>
                         <h4>Sent: {message.Sent}</h4>
-                        <h4>{message.header}</h4>
-                        <p>{message.message}</p>
+                        <h4 className="break">{message.header}</h4>
+                        <p className="break">{message.message}</p>
                         <button className="replyButton" onClick={(e) => this.handleReply(e,message.FromName,message.From)}>reply</button>
                         </li>);
                     if(this.state.id === message.From)
                     {
                         htmlpiece = (<li className="message" key={key}>
-                        <h3>To: {message.ToName}</h3>
-                            <h3>From: {message.FromName} </h3>
+                        <h3 className="break">To: {message.ToName}</h3>
+                            <h3 className="break">From: {message.FromName} </h3>
                             <h4>Sent: {message.Sent}</h4>
-                            <h4>{message.header}</h4>
-                            <p>{message.message}</p>
+                            <h4 className="break">{message.header}</h4>
+                            <p className="break">{message.message}</p>
                             </li>);
                     }
                     if(this.state.filter === 1)
@@ -197,7 +197,7 @@ export default class userPage extends Component
                             <a href="javascript:void(0);" id="close" onClick={() => this.closeMessage()}>Close</a>
                         </div>
                     </Modal>
-            <h1 id="username" className="Courgette">{this.state.name}</h1>
+            <h1 id="username" className="Courgette break">{this.state.name}</h1>
             <div aria-label="inbox">
             <ul aria-label="inbox filters" className="inline filterBox">
             <h2>Filters</h2>
